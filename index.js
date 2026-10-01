@@ -47,6 +47,8 @@ async function getParty(id) {
 
 function PartyListItem(party) {
   const $party = document.createElement("li");
+  $party.classList.add("party");
+
   $party.innerHTML = `
         <a href="#selected">${party.name}</a>`;
 
@@ -57,6 +59,7 @@ function PartyListItem(party) {
 
 function PartiesList() {
   const $list = document.createElement("ul");
+  $list.classList.add("list");
 
   const $parties = parties.map(PartyListItem);
 
@@ -71,12 +74,17 @@ function PartyDescription() {
     return $p;
   }
 
-  const $details = document.createElement("section");
+  const $details = document.createElement("div");
+  $details.classList.add("details");
+
+  const date = new Date(selectedParty.date);
 
   $details.innerHTML = `
-    <h4>${selectedParty.name}</h4>
-    <p>${selectedParty.date}</p>
-    <p>${selectedParty.location}</p>
+    <h3>${selectedParty.name} #${selectedParty.id}</h3>
+    <div class="day-location">
+        <p>${date.toDateString()}</p>
+        <p>${selectedParty.location}</p>
+    </div>
     <article>${selectedParty.description}</article>
   `;
 
@@ -92,7 +100,7 @@ function render() {
             <section>
                 <h2>Upcoming Parties</h2>
                 <Upcoming></Upcoming>
-            </section
+            </section>
             <section>
                 <h2>Party Details</h2>
                 <Description></Description>
