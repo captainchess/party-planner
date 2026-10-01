@@ -65,7 +65,22 @@ function PartiesList() {
 }
 
 function PartyDescription() {
-  
+  if (!selectedParty) {
+    const $p = document.createElement("p");
+    $p.textContent = "Select Event For More Info";
+    return $p;
+  }
+
+  const $details = document.createElement("section");
+
+  $details.innerHTML = `
+    <h4>${selectedParty.name}</h4>
+    <p>${selectedParty.date}</p>
+    <p>${selectedParty.location}</p>
+    <article>${selectedParty.description}</article>
+  `;
+
+  return $details;
 }
 
 function render() {
