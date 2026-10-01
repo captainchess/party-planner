@@ -46,7 +46,13 @@ async function getParty(id) {
 // === Components ===
 
 function PartyListItem(party) {
-  
+  const $party = document.createElement("li");
+  $party.innerHTML = `
+        <a href="#selected">${party.name}</a>`;
+
+  $party.addEventListener("click", () => getParty(party.id));
+
+  return $party;
 }
 
 function PartiesList() {
