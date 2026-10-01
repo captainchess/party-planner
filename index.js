@@ -56,7 +56,12 @@ function PartyListItem(party) {
 }
 
 function PartiesList() {
-  
+  const $list = document.createElement("ul");
+
+  const $parties = parties.map(PartyListItem);
+
+  $list.replaceChildren(...$parties);
+  return $list;
 }
 
 function PartyDescription() {
